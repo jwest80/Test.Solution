@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ED563C62-2142-41F4-9BE6-E11FBAE0DB3A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B0D7B443-1932-49D8-9A84-878A2B23015E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test.ConsoleApp</RootNamespace>
-    <AssemblyName>Test.ConsoleApp</AssemblyName>
+    <RootNamespace>Test.Data</RootNamespace>
+    <AssemblyName>Test.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -52,7 +49,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="BloggingContext.cs" />
+    <Compile Include="Migrations\201703250214124_InitialCreate.cs" />
+    <Compile Include="Migrations\201703250214124_InitialCreate.Designer.cs">
+      <DependentUpon>201703250214124_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703250231290_AddBlogUrl.cs" />
+    <Compile Include="Migrations\201703250231290_AddBlogUrl.Designer.cs">
+      <DependentUpon>201703250231290_AddBlogUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703250236410_AddUser.cs" />
+    <Compile Include="Migrations\201703250236410_AddUser.Designer.cs">
+      <DependentUpon>201703250236410_AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703250245274_keys.cs" />
+    <Compile Include="Migrations\201703250245274_keys.Designer.cs">
+      <DependentUpon>201703250245274_keys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,14 +74,24 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Test.Data\Test.Data.csproj">
-      <Project>{b0d7b443-1932-49d8-9a84-878a2b23015e}</Project>
-      <Name>Test.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Test.Model\Test.Model.csproj">
       <Project>{e0dbafdd-4129-4263-9292-8b5c35bf71a0}</Project>
       <Name>Test.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703250214124_InitialCreate.resx">
+      <DependentUpon>201703250214124_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703250231290_AddBlogUrl.resx">
+      <DependentUpon>201703250231290_AddBlogUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703250236410_AddUser.resx">
+      <DependentUpon>201703250236410_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703250245274_keys.resx">
+      <DependentUpon>201703250245274_keys.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
