@@ -50,21 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BloggingContext.cs" />
-    <Compile Include="Migrations\201703250214124_InitialCreate.cs" />
-    <Compile Include="Migrations\201703250214124_InitialCreate.Designer.cs">
-      <DependentUpon>201703250214124_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703250231290_AddBlogUrl.cs" />
-    <Compile Include="Migrations\201703250231290_AddBlogUrl.Designer.cs">
-      <DependentUpon>201703250231290_AddBlogUrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703250236410_AddUser.cs" />
-    <Compile Include="Migrations\201703250236410_AddUser.Designer.cs">
-      <DependentUpon>201703250236410_AddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703250245274_keys.cs" />
-    <Compile Include="Migrations\201703250245274_keys.Designer.cs">
-      <DependentUpon>201703250245274_keys.cs</DependentUpon>
+    <Compile Include="Migrations\201703261959295_init.cs" />
+    <Compile Include="Migrations\201703261959295_init.Designer.cs">
+      <DependentUpon>201703261959295_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,17 +68,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703250214124_InitialCreate.resx">
-      <DependentUpon>201703250214124_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703250231290_AddBlogUrl.resx">
-      <DependentUpon>201703250231290_AddBlogUrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703250236410_AddUser.resx">
-      <DependentUpon>201703250236410_AddUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703250245274_keys.resx">
-      <DependentUpon>201703250245274_keys.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703261959295_init.resx">
+      <DependentUpon>201703261959295_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
