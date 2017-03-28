@@ -52,6 +52,7 @@ namespace Test.ConsoleApp
 
         static private void Create()
         {
+
             using (var db = new BloggingContext())
             {
                 Console.Write("Enter a name for a new Blog: ");
