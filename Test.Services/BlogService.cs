@@ -6,25 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Test.Data;
 using Test.Model.Entities;
+using Test.Repo;
 
 namespace Test.Services
 {
-    class BlogService
+    public class BlogService : BaseService<Blog>
     {
-        private DbContext _context;
-
         public BlogService()
         {
-            _context = new BloggingContext();
         }
 
-        public int Create(Blog blog)
+        public BlogService(DbContext context) : base(context)
         {
-            //var repo = new GenericRepository(_context);
-
-            //return blog.Id;
-
-            throw new NotImplementedException();
+            //_context = new BloggingContext();
         }
     }
 }

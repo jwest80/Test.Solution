@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Test.Data;
 using Test.Model.Entities;
+using Test.Services;
 
 namespace Test.ConsoleApp
 {
@@ -52,32 +48,23 @@ namespace Test.ConsoleApp
 
         static private void Create()
         {
+            Console.Write("Enter a name for a new Blog: ");
+            var name = Console.ReadLine();
+            var blog = new Blog { Name = name };
 
-            using (var db = new BloggingContext())
-            {
-                Console.Write("Enter a name for a new Blog: ");
-                var name = Console.ReadLine();
-
-                var blog = new Blog { Name = name };
-                db.Blogs.Add(blog);
-                db.SaveChanges();
-            }
+            var service = new BlogService();
+            service.Create(blog);
         }
 
         static private void Read()
         {
-            using (var db = new BloggingContext())
-            {
-                // Display all Blogs from the database 
-                var query = from b in db.Blogs
-                            orderby b.Id
-                            select b;
+            var service = new BlogService();
+            var items = service.Read();
 
-                Console.WriteLine("All blogs in the database:");
-                foreach (var item in query)
-                {
-                    Console.WriteLine(item.Id + ") " + item.Name);
-                }
+            Console.WriteLine("All blogs in the database:");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Id + ") " + item.Name);
             }
         }
 
@@ -86,20 +73,16 @@ namespace Test.ConsoleApp
             Console.Clear();
             Console.WriteLine("Which blog do you wish to update? ");
             Read();
-            var choice = Console.ReadLine();
+            var choice = Convert.ToInt32(Console.ReadLine());
 
-            using (var db = new BloggingContext())
-            {
-                var blogList = db.Blogs.ToList<Blog>();
-                Blog blogToUpdate = blogList.Where(b => b.Id == Convert.ToInt32(choice)).FirstOrDefault<Blog>();
+            var service = new BlogService();
 
-                Console.Clear();
-                Console.Write("Enter new name for '" + blogToUpdate.Name + "': ");
-                var newName = Console.ReadLine();
+            Blog update = service.ReadById(choice);
+            Console.Clear();
+            Console.Write("Enter new name for '" + update.Name + "': ");
+            update.Name = Console.ReadLine();
+            service.Update(update);
 
-                blogToUpdate.Name = newName;
-                db.SaveChanges();
-            }
 
         }
 
@@ -108,19 +91,15 @@ namespace Test.ConsoleApp
             Console.Clear();
             Console.WriteLine("Which blog do you wish to delete? ");
             Read();
-            var choice = Console.ReadLine();
+            var choice = Convert.ToInt32(Console.ReadLine());
 
-            using (var db = new BloggingContext())
-            {
-                var blogList = db.Blogs.ToList<Blog>();
-                db.Blogs.Remove(blogList.Find(b => b.Id == Convert.ToInt32(choice)));
+            var service = new BlogService();
+            service.Delete(choice);
 
-                db.SaveChanges();
-                Read();
+            Read();
 
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }

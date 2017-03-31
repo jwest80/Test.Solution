@@ -14,7 +14,7 @@ namespace Test.Repo
     public interface IGenericRepository<T> where T : class
     {
         IQueryable<T> Read();
-        IQueryable<T> ReadBy(Expression<Func<T, bool>> predicate);
+        IQueryable<T> Read(Expression<Func<T, bool>> predicate);
         void Create(T entity);
         void Delete(T entity);
         void Update(T entity);
@@ -22,7 +22,7 @@ namespace Test.Repo
     }
 
 
-    public abstract class GenericRepository<T> :IGenericRepository<T> where T : class
+    public class GenericRepository<T> :IGenericRepository<T> where T : class
     {
         private DbContext _context;
 
@@ -42,7 +42,7 @@ namespace Test.Repo
             return query;
         }
 
-        public IQueryable<T> ReadBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public IQueryable<T> Read(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
 
             IQueryable<T> query = _context.Set<T>().Where(predicate);
