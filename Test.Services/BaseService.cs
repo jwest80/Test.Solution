@@ -29,7 +29,7 @@ namespace Test.Services
     /// <typeparam name="M">Your model</typeparam>
     /// <seealso cref="System.IDisposable" />
     /// <seealso cref="Services.IService{M}" />
-    public class BaseService<M> : 
+    public class BaseService<M> : IDisposable,
         IService<M> where M : class, IEntity<int>
     {
 
@@ -80,9 +80,22 @@ namespace Test.Services
             _repo.Save();
         }
 
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
     }
