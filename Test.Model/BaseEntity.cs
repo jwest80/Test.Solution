@@ -17,11 +17,24 @@ namespace Test.Model
 
     public class BaseEntity : IEntity<int>
     {
+
         [Key]
         [Column(Order = 1)]
         public int Id { get; set; }
 
         [Column(Order = 2)]
         public string Name { get; set; }
+
+        public DateTime? Created { get; set; }
+
+        [StringLength(100)]
+        public string CreatedBy { get; set; }
+
+        public DateTime? Modified { get; set; }
+
+        [StringLength(100)]
+        public string ModifiedBy { get; set; }
+
+        public bool Active { get; set; }
     }
 }

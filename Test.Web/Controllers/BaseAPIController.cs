@@ -22,7 +22,6 @@ namespace Test.Web.Controllers
         }
 
 
-
         public virtual IQueryable<M> Get()
         {
             return _Service.Read().AsQueryable();
@@ -42,8 +41,7 @@ namespace Test.Web.Controllers
                 return NotFound();
             }
         }
-
-
+        
 
         public virtual IHttpActionResult Put([FromBody] M item)
         {
@@ -60,6 +58,7 @@ namespace Test.Web.Controllers
             }
 
         }
+
 
         public virtual IHttpActionResult Delete(int id)
         {
@@ -81,11 +80,10 @@ namespace Test.Web.Controllers
                 item.Id = createdId;
 
                 return CreatedAtRoute("DefaultApi", new { id = createdId }, item);
-
             }
-
         }
 
-    }
 
+
+    }
 }

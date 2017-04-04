@@ -38,7 +38,11 @@ namespace Test.Services
 
         public BaseService(DbContext context = null)
         {
-            _context = new BloggingContext();
+            if (context == null)
+            {
+                _context = new BloggingContext();
+            }
+            
             _repo = (new GenericRepository<M>(_context));
         }
 
