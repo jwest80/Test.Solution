@@ -23,10 +23,10 @@ namespace Test.Services
     }
 
     /// <summary>
-    /// The generic service allows... (TODO)
-    /// Mapping profiles are NOT required
+    /// The generic service allows for Entity... 
+    /// No Mapping (accepts and return Entity)
     /// </summary>
-    /// <typeparam name="M">Your model</typeparam>
+    /// <typeparam name="M">Entity of type IEntity</typeparam>
     /// <seealso cref="System.IDisposable" />
     /// <seealso cref="Services.IService{M}" />
     public class BaseService<M> : IDisposable,
