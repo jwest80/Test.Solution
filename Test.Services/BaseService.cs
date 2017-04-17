@@ -32,6 +32,18 @@ namespace Test.Services
     public class BaseService<M> : IDisposable,
         IService<M> where M : class, IEntity<int>
     {
+        // DISPOSING - This class does NOT specifically dispose DBContext b/c Entity Framework handles this
+        //
+        // Warning! - You must dispose DB context manually in the following two cases.
+        // 1. The default automatic open/close behavior is relatively easy to override: you can assume 
+        //      control of when the connection is opened and closed by manually opening the connection. Once you 
+        //      start doing this in some part of your code, then forgetting to dipose the context becomes harmful, 
+        //      because you might be leaking open connections.
+        // 2. DbContext implements IDiposable following the recommended pattern, which includes exposing a virtual 
+        //      protected Dispose method that derived types can override if for example the need to aggregate other 
+        //      unmanaged resources into the lifetime of the context.
+        //
+        // Read More here: http://blog.jongallant.com/2012/10/do-i-have-to-call-dispose-on-dbcontext/
 
         private DbContext _context;
         private GenericRepository<M> _repo;
