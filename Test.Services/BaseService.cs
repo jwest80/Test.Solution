@@ -33,6 +33,7 @@ namespace Test.Services
         IService<M> where M : class, IEntity<int>
     {
         // DISPOSING - This class does NOT specifically dispose DBContext b/c Entity Framework handles this
+        // Still trying to decide if this should be handled here.
         //
         // Warning! - You must dispose DB context manually in the following two cases.
         // 1. The default automatic open/close behavior is relatively easy to override: you can assume 
@@ -44,6 +45,9 @@ namespace Test.Services
         //      unmanaged resources into the lifetime of the context.
         //
         // Read More here: http://blog.jongallant.com/2012/10/do-i-have-to-call-dispose-on-dbcontext/
+
+        // TODO: http://mehdi.me/ambient-dbcontext-in-ef6/
+        // Managing DbContext the right way with Entity Framework 6: an in-depth guide
 
         private DbContext _context;
         private GenericRepository<M> _repo;
@@ -58,38 +62,44 @@ namespace Test.Services
             _repo = (new GenericRepository<M>(_context));
         }
 
-        public int Create(M model)
+        public virtual int Create(M model)
         {
-            _repo.Create(model);
-            _repo.Save();
-            return model.Id;
+            //using (var scope = _context)
+            //{
+                _repo.Create(model);
+                _repo.Save();
+                return model.Id;
+            //}   
         }
 
-        public List<M> Read()
+        public virtual List<M> Read()
         {
-            var models = _repo.Read().ToList();
-            return models;
+            //using (var scope = _context)
+            //{
+                var models = _repo.Read().ToList();
+                return models;
+            //}
         }
 
-        public List<M> Read(Expression<Func<M, bool>> predicate)
+        public virtual List<M> Read(Expression<Func<M, bool>> predicate)
         {
             var models = _repo.Read(predicate).ToList();
             return models;
         }
 
-        public M ReadById(int id)
+        public virtual M ReadById(int id)
         {
             var model = _repo.Read(x => x.Id == id).FirstOrDefault();
             return model;
         }
 
-        public void Update(M model)
+        public virtual void Update(M model)
         {
             _repo.Update(model);
             _repo.Save();
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             var modelToDelete = _repo.Read(x => x.Id == id).FirstOrDefault();
             _repo.Delete(modelToDelete);
