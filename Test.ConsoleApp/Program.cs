@@ -1,6 +1,6 @@
 ﻿using System;
 using Test.Model.Entities;
-using Test.Services;
+using Test.Core.Services;
 
 namespace Test.ConsoleApp
 {

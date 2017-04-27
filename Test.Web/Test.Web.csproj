@@ -218,9 +218,9 @@
       <Project>{E0DBAFDD-4129-4263-9292-8B5C35BF71A0}</Project>
       <Name>Test.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Test.Services\Test.Services.csproj">
+    <ProjectReference Include="..\Test.Services\Test.Core.csproj">
       <Project>{fa1f96cd-ae98-4bd0-a316-a5e89cde4b61}</Project>
-      <Name>Test.Services</Name>
+      <Name>Test.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

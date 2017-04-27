@@ -8,7 +8,7 @@ using Test.Data;
 using Test.Model.Entities;
 using Test.Repo;
 
-namespace Test.Services
+namespace Test.Core.Services
 {
     public class BlogService : BaseService<Blog>
     {

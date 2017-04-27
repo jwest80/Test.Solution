@@ -9,7 +9,7 @@ using Test.Data;
 using Test.Model;
 using Test.Repo;
 
-namespace Test.Services
+namespace Test.Core.Services
 {
     public interface IService<M> where M : class, IEntity<int>
     {
@@ -56,7 +56,7 @@ namespace Test.Services
         {
             if (context == null)
             {
-                _context = new BloggingContext();
+                _context = new BloggingContext(); 
             }
             
             _repo = (new GenericRepository<M>(_context));

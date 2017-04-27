@@ -71,9 +71,9 @@
       <Project>{e0dbafdd-4129-4263-9292-8b5c35bf71a0}</Project>
       <Name>Test.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Test.Services\Test.Services.csproj">
+    <ProjectReference Include="..\Test.Services\Test.Core.csproj">
       <Project>{fa1f96cd-ae98-4bd0-a316-a5e89cde4b61}</Project>
-      <Name>Test.Services</Name>
+      <Name>Test.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
